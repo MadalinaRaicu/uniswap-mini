@@ -10,7 +10,9 @@ export const swapTokens = async (amount: string, pair: string): Promise<void> =>
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = provider.getSigner();
 
-    const usdcAddress = '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606EB48'; // Mainnet USDC address (use testnet address for testing)
+    // const usdcAddress = '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606EB48'; // Mainnet USDC address (use testnet address for testing)
+    const usdcAddress = '0x2C032Aa43D119D7bf4Adc42583F1f94f3bf3023a'; // Testnet USDC address
+
     const ethAddress = ethers.constants.AddressZero;
 
     const uniswapV2RouterAddress = '0x7a250d5630B4cF539739df2C5dAcb4c659F2488D'; // Mainnet address
