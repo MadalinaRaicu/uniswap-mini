@@ -1,11 +1,13 @@
 import { ethers } from 'ethers';
 
-export const swapTokens = async (amount: string, pair: string) => {
+export const swapTokens = async (amount: string, pair: string): Promise<void> => {
     if (!window.ethereum) {
         throw new Error('No crypto wallet found. Please install it.');
     }
 
-    await window.ethereum.send('eth_requestAccounts');
+    // Request account access if needed
+    await window.ethereum.request({ method: 'eth_requestAccounts' });
+
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = provider.getSigner();
 
@@ -20,15 +22,11 @@ export const swapTokens = async (amount: string, pair: string) => {
         'function getAmountsOut(uint amountIn, address[] memory path) public view returns (uint[] memory amounts)',
     ];
 
-    const contract = new ethers.Contract(
-        uniswapV2RouterAddress,
-        uniswapV2RouterABI,
-        signer
-    );
+    const contract = new ethers.Contract(uniswapV2RouterAddress, uniswapV2RouterABI, signer);
 
     const amountIn = ethers.utils.parseUnits(amount, 6); // Assuming USDC has 6 decimals
 
-    const path = [usdcAddress, ethAddress];
+    const path: string[] = [usdcAddress, ethAddress];
     const amountsOut = await contract.getAmountsOut(amountIn, path);
     const amountOutMin = amountsOut[1].sub(amountsOut[1].div(10)); // Set slippage to 10%
 

@@ -1,3 +1,5 @@
+'use client';
+
 import { useStore } from '../store/useStore';
 
 const TokenAmountInput = () => {
@@ -6,7 +8,7 @@ const TokenAmountInput = () => {
   return (
     <div className='mb-4'>
       <label
-        className='block text-sm font-medium mb-1'
+        className='block text-sm font-medium mb-2'
         htmlFor='amount'
       >
         Amount
@@ -14,9 +16,10 @@ const TokenAmountInput = () => {
       <input
         type='number'
         id='amount'
-        className='w-full p-2 border rounded bg-gray-700 border-gray-600'
+        className='w-full p-3 border rounded bg-gray-700 border-gray-600 text-white'
         value={amount}
         onChange={(e) => setAmount(e.target.value)}
+        placeholder='Enter amount of USDC'
       />
     </div>
   );

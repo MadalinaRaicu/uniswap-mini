@@ -28,7 +28,7 @@ const SwapButton = () => {
     <div>
       <button
         type='button'
-        className='w-full p-2 bg-blue-600 rounded hover:bg-blue-700'
+        className='w-full p-3 bg-blue-600 rounded hover:bg-blue-700 text-white font-bold'
         onClick={handleSwap}
         disabled={loading}
       >
